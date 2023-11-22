@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${group.getName()}"></title>
+</head>
+<body>
+<th:block th:each="document : ${group.getDocuments()}">
+    <b1 th:text="${document.getName()}"></b1>
+</th:block>
+</body>
+</html>
