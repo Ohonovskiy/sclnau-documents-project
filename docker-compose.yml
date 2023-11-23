@@ -8,9 +8,9 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://sql11.freesqldatabase.com:3306/sql11657677
-      - SPRING_DATASOURCE_USERNAME=sql11657677
-      - SPRING_DATASOURCE_PASSWORD=lQIvaPuGE1
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/documents-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
       - DEFAULT_DB_SCHEMA=public
       - MAX_FILE_SIZE=400MB
     volumes:

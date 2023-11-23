@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table
 public class User {
     @Id
     @Setter(AccessLevel.NONE)

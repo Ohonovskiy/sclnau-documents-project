@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Entity
 @Data
+@Table
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

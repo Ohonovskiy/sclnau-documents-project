@@ -40,10 +40,12 @@ public class SpringConfig {
                                         "/img/**",
                                         "/lib/**",
                                         "/js/**",
-                                        "/scss/**")
+                                        "/scss/**"
+                                )
                                 .permitAll()
                                 .anyRequest()
-                                .authenticated())
+                                .authenticated()
+                )
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(ses ->
                         ses.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)

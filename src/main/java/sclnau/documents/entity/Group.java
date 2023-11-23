@@ -12,6 +12,7 @@ import java.util.Objects;
 
 @Data
 @Entity
+@Table
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
