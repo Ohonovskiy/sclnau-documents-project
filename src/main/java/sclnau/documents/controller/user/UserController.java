@@ -1,8 +1,14 @@
 package sclnau.documents.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import sclnau.documents.entity.Document;
+import sclnau.documents.entity.Group;
+import sclnau.documents.entity.User;
 import sclnau.documents.service.*;
 
 @Controller
@@ -14,6 +20,8 @@ public class UserController {
     private final DocumentsFileManager documentsFileManager;
     private final DocumentService documentService;
     private final FileNameGenerator fileNameCreator;
+
+    private User currentUser;
 
     @Autowired
     public UserController(GroupService groupService, UserService userService, SubjectService subjectService, DocumentsFileManager documentsFileManager, DocumentService documentService, FileNameGenerator fileNameCreator) {
@@ -51,63 +59,54 @@ public class UserController {
 //        return "redirect:/user/profile";
 //    }
 //
-//    @GetMapping("/upload/{id}")
-//    public String uploadPdf(Model model, @PathVariable Long id){
-//        model.addAttribute("group", groupService.getById(id));
-//        model.addAttribute("subjects", groupService.getById(id).getSubjects());
-//        model.addAttribute("groups", groupService.getAll());
-//
-//
-//        return "user/upload_pdf";
-//    }
-//
-//    @GetMapping("/upload")
-//    public String uploadIndex(){
-//        return "redirect:/groups";
-//    }
-//
-//    @PostMapping("/uploadPost")
-//    public String handleFormSubmission(@RequestParam("groupId") String groupId,
-//                                       @RequestParam("subjectName") String subjectName,
-//                                       @RequestParam("name") String name,
-//                                       @RequestParam("author") String author,
-//                                       @RequestParam("file") MultipartFile file) throws Exception {
-//
-//        if(file != null) {
-//            Group group = groupService.getById(Long.valueOf(groupId));
-//
-//            Subject subject = subjectService.getByNameAndGroupId(subjectName, group.getId());
-//
-//            Book book = new Book();
-//            documentService.save(book);
-//
-//            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//
-//            subject.setGroup(group);
-//
-//            String fileName =
-//                    fileNameCreator.createNameForFile(file, book.getId());
-//
-//            String filePath =
-//                    documentsFileManager.saveFileAndGetFilePath(file, fileName);
-//
-//            book.setName(name);
-//            book.setAuthor(author);
-//            book.setPdfPath(filePath);
-//            book.setSubject(subject);
-//
-//            if(userService.getByEmail(authentication.getName()).isPresent()) {
-//                User user = userService.getByEmail(authentication.getName()).get();
-//                user.addBook(book);
-//                userService.save(user);
-//            }
-//
-//            documentService.save(book);
-//            groupService.save(group);
-//            documentService.save(book);
-//        }
-//
-//
-//        return "redirect:/user/upload/"+groupId+"?success";
-//    }
+    @GetMapping("/upload/{id}")
+    public String uploadPdf(Model model, @PathVariable Long id){
+        model.addAttribute("group", groupService.getById(id));
+
+        return "user/upload";
+    }
+
+
+    @PostMapping("/uploadDoc")
+    public String handleFormSubmission(@RequestParam("groupId") String groupId,
+                                       @RequestParam("name") String name,
+                                       @RequestParam("file") MultipartFile file) throws Exception {
+
+        if(file != null) {
+            Group group = groupService.getById(Long.valueOf(groupId));
+            Document document = new Document();
+
+            setCurrentUser();
+
+            documentService.save(document);
+
+            String fileName =
+                    fileNameCreator.generateHashedFileName(file, document.getId());
+
+            String filePath =
+                    documentsFileManager.saveFileAndGetFilePath(file, fileName);
+
+            document.setGroup(group);
+            document.setName(name);
+            document.setPath(filePath);
+
+            currentUser.addDocument(document);
+            userService.save(currentUser);
+
+            groupService.save(group);
+            documentService.save(document);
+        }
+
+
+        return "redirect:/user/upload/"+groupId+"?success";
+    }
+
+    private void setCurrentUser(){
+        currentUser = userService
+                .getByEmail(SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getName())
+                .orElseThrow(() -> new RuntimeException("User with that email doesn't exist"));
+    }
 }

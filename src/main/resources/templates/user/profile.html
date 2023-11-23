@@ -142,46 +142,6 @@
     </section>
 </main>
 
-<div th:replace="~{fragments/footer :: footer}"></div>
-
-<!-- JAVASCRIPT FILES -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-<script src="/js/Headroom.js"></script>
-<script src="/js/jQuery.headroom.js"></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/custom.js"></script>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $(".group-name").click(function() {
-            $(this).next(".collapse").toggleClass("show");
-        });
-
-        $(".subject-name").click(function() {
-            $(this).next(".collapse").toggleClass("show");
-        });
-    });
-
-    const dropdownContent = document.querySelector('.dropdown');
-
-    dropdownContent.addEventListener('click', function (e) {
-        e.stopPropagation();
-    });
-
-    document.addEventListener('click', function () {
-        dropdownContent.style.display = 'none';
-    });
-</script>
-
-<script>
-    document.querySelector('.dropdown-menu').addEventListener('click', function(event) {
-        event.stopPropagation();
-    });
-</script>
 
 </body>
 </html>

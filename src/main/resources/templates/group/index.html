@@ -6,7 +6,9 @@
 </head>
 <body>
 <th:block th:each="document : ${group.getDocuments()}">
+    <img src="resources/static/documents/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b85512.jpg" style="width: 200px; height: 200px">
     <b1 th:text="${document.getName()}"></b1>
 </th:block>
+<a th:href="@{/user/upload/{id}(id=${group.getId()})}"> Завантажити документ</a>
 </body>
 </html>

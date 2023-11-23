@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Завантаження документ</title>
+</head>
+
+<body>
+
+    <h2 class="mb-4">Завантажити документ для <br> <span th:text="${group.getName()}"></span></h2>
+
+    <form th:action="@{/user/uploadDoc}" th:method="post" enctype="multipart/form-data" role="form">
+
+        <div class="form-floating">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Назва документа" required>
+
+            <label for="name">Назва документа</label>
+        </div>
+
+        <div class="form-floating my-4">
+            <input type="file" class="form-control" id="file" name="file" accept="image/**" required><br><br>
+        </div>
+
+        <input type="hidden" name="groupId" th:value="${group.getId()}">
+
+        <button type="submit" class="form-control btn custom-btn">Завантажити</button>
+
+    </form>
+
+</body>
+</html>

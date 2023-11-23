@@ -1,5 +1,6 @@
 package sclnau.documents.service;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,7 +11,7 @@ import java.security.MessageDigest;
 @Service
 public class FileNameGenerator {
 
-    public String generateHashedFileName(MultipartFile file, Long bookId) throws Exception {
+    public String generateHashedFileName(MultipartFile file, Long docId) throws Exception {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
 
         try (InputStream is = new FileInputStream(String.valueOf(file))) {
@@ -29,6 +30,6 @@ public class FileNameGenerator {
             result.append(String.format("%02x", b));
         }
 
-        return result.append(bookId).toString();
+        return result.append(docId).append('.').append(FilenameUtils.getExtension(file.getOriginalFilename())).toString();
     }
 }

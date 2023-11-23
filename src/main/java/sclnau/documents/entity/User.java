@@ -25,4 +25,18 @@ public class User {
     private List<Document> documents = new ArrayList<>();
 
     private Role role = Role.ROLE_USER;
+
+    public void addDocument(Document document){
+        document.setUser(this);
+        documents.add(document);
+    }
+
+    public void removeDocument(Document document){
+        document.setUser(null);
+        documents.remove(document);
+    }
+
+    public void removeDocument(Long id){
+        documents.removeIf(document -> document.getId().equals(id));
+    }
 }
