@@ -40,8 +40,9 @@ public class SpringConfig {
                                         "/img/**",
                                         "/lib/**",
                                         "/js/**",
-                                        "/scss/**"
-                                )
+                                        "/scss/**",
+                                        "/**",
+                                        "/group/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

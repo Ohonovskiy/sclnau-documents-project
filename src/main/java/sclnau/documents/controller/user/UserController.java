@@ -58,7 +58,7 @@ public class UserController {
 //
 //        return "redirect:/user/profile";
 //    }
-//
+
     @GetMapping("/upload/{id}")
     public String uploadPdf(Model model, @PathVariable Long id){
         model.addAttribute("group", groupService.getById(id));

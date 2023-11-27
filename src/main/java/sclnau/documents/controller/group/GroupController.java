@@ -21,9 +21,7 @@ public class GroupController {
 
     @GetMapping("/{id}")
     public String groupPage(@PathVariable Long id, Model model){
-
         model.addAttribute("group", groupService.getById(id));
-
         return "group/index";
     }
 }
