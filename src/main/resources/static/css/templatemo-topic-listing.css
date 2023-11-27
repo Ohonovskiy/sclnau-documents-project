@@ -138,6 +138,28 @@ strong {
 /*---------------------------------------
   SECTION               
 -----------------------------------------*/
+
+/* CUSTOM */
+.custom-block {
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-block:hover {
+  transform: translateY(-10px); /* Move up by 10px on hover (adjust as needed) */
+  transition: transform 0.3s ease; /* Transition effect */
+}
+
+.custom-block-image {
+  transition: transform 0.3s ease; /* Apply transition to the image */
+}
+
+.custom-block:hover .custom-block-image {
+  transform: scale(1.1); /* Scale up the image on hover (adjust as needed) */
+}
+/* CUSTOM */
+
+
 .section-padding {
   padding-top: 100px;
   padding-bottom: 100px;
@@ -148,7 +170,7 @@ strong {
 }
 
 .section-overlay {
-  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  background-image: linear-gradient(15deg, #126e13 0%, #91d080 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -487,7 +509,7 @@ strong {
   HERO        
 -----------------------------------------*/
 .hero-section {
-  background-image: linear-gradient(15deg, #71d066 0%, #51803b 100%);
+  background-image: linear-gradient(15deg, #1ad244 0%, #eefaee 90%);
   position: relative;
   overflow: hidden;
   padding-top: 150px;
@@ -1037,7 +1059,6 @@ blockquote {
   background: var(--primary-color);
   color: var(--white-color);
 }
-5
 
 /*---------------------------------------
   RESPONSIVE STYLES               
