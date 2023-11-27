@@ -24,11 +24,12 @@ public class AuthController {
     @GetMapping("/login")
     public String login(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAuth = authentication != null && !authentication.getName().equals("anonymousUser");
 
-        if(authentication.isAuthenticated()){
+        if(isAuth){
             return "redirect:/user/profile";
-        }
-        return "user/login";
+        } else
+            return "user/login";
     }
 
     private void setCurrentUser(){

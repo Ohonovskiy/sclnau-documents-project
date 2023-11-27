@@ -33,35 +33,35 @@ public class UserController {
         this.fileNameCreator = fileNameCreator;
     }
 
-//    @GetMapping("/profile")
-//    public String userProfile(Model model){
-//        if (userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).isPresent()) {
-//            User user = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get();
-//            model.addAttribute("user", user);
-//            model.addAttribute("groups", groupService.getAll());
-//        }
-//        return "user/profile";
-//    }
-//
-//    @PostMapping("/deleteBook")
-//    public String deleteBook(@RequestParam("bookId") Long bookId){
-//        Book book = documentService.getById(bookId);
-//
-//        if (userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).isPresent()) {
-//            User user = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get();
-//            user.removeBook(bookId);
-//        }
-//
-//        documentsFileManager.deleteBook(book);
-//
-//        documentService.remove(bookId);
-//
-//        return "redirect:/user/profile";
-//    }
+    @GetMapping("/profile")
+    public String userProfile(Model model){
+        if (userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).isPresent()) {
+            User user = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get();
+            model.addAttribute("user", user);
+            model.addAttribute("groups", groupService.getAll());
+        }
+        return "user/profile";
+    }
 
-    @GetMapping("/upload/{id}")
-    public String uploadPdf(Model model, @PathVariable Long id){
-        model.addAttribute("group", groupService.getById(id));
+    @PostMapping("/deleteBook")
+    public String deleteBook(@RequestParam("documentId") Long docId){
+        Document document = documentService.getById(docId);
+
+        if (userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).isPresent()) {
+            User user = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get();
+            user.removeDocument(docId);
+        }
+
+        documentsFileManager.deleteDocument(document);
+
+        documentService.remove(docId);
+
+        return "redirect:/user/profile";
+    }
+
+    @GetMapping("/upload")
+    public String uploadPdf(Model model){
+        model.addAttribute("groups", groupService.getAll());
 
         return "user/upload";
     }

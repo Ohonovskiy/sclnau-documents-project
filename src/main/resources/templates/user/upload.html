@@ -9,9 +9,16 @@
 
 <body>
 
-    <h2 class="mb-4">Завантажити документ для <br> <span th:text="${group.getName()}"></span></h2>
+    <h2 class="mb-4">Завантажити документ</h2>
 
     <form th:action="@{/user/uploadDoc}" th:method="post" enctype="multipart/form-data" role="form">
+
+        <div class="form-floating my-4">
+            <select name="groupId" class="form-control">
+                <option value="">Виберіть групу</option> <!-- Default option -->
+                <option th:each="group : ${groups}" name="groupId" th:value="${group.id}" th:text="${group.name}"></option>
+            </select>
+        </div>
 
         <div class="form-floating">
             <input type="text" name="name" id="name" class="form-control" placeholder="Назва документа" required>
