@@ -43,14 +43,12 @@ public class UserController {
         return "user/profile";
     }
 
-    @PostMapping("/deleteBook")
+    @PostMapping("/deleteDoc")
     public String deleteBook(@RequestParam("documentId") Long docId){
         Document document = documentService.getById(docId);
 
-        if (userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).isPresent()) {
-            User user = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get();
-            user.removeDocument(docId);
-        }
+        setCurrentUser();
+        currentUser.removeDocument(docId);
 
         documentsFileManager.deleteDocument(document);
 
@@ -98,7 +96,7 @@ public class UserController {
         }
 
 
-        return "redirect:/user/upload/"+groupId+"?success";
+        return "redirect:/user/upload";
     }
 
     private void setCurrentUser(){

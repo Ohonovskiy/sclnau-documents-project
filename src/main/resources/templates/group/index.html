@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Topic Detail Page</title>
+    <title th:text="${group.getName()}"></title>
 
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,11 +31,11 @@
         <div class="container">
             <a class="navbar-brand" th:href="@{/}">
                 <i href="https://3.bp.blogspot.com/-YC6jKXG50MY/XvvBQ-YKwuI/AAAAAAAABmg/fMvP--hDdxc3P3TRaPHF4UA32OlHxj0rwCK4BGAYYCw/w0/fontawesome.PNG"></i>
-                <span class="text-white">Методкабінет</span>
+                <span class="text-white">Методичний кабінет</span>
             </a>
 
             <div class="d-lg-none ms-auto me-4">
-                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                <a th:href="@{/auth/login}" class="navbar-icon bi-person smoothscroll"></a>
             </div>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll active" href="">Документи</a>
+                        <a class="nav-link click-scroll active" th:href="@{/#section_2}">Документи</a>
                     </li>
 
                     <li class="nav-item">
@@ -62,7 +62,7 @@
                 </ul>
 
                 <div class="d-none d-lg-block">
-                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    <a th:href="@{/auth/login}" class="navbar-icon bi-person smoothscroll"></a>
                 </div>
             </div>
         </div>
@@ -134,8 +134,8 @@
         <div class="row">
 
             <div class="col-lg-3 col-12 mb-4 pb-2">
-                <a class="navbar-brand mb-2" href="">
-                    <span>Методкабінет</span>
+                <a class="navbar-brand mb-2" th:href="@{/}">
+                    <span>СФКЛНУП</span>
                 </a>
             </div>
 

@@ -29,7 +29,7 @@
                     <tbody>
                     <tr th:each="document : ${user.getDocuments()}">
                         <td>
-                            <a th:text="${document.getName()}"></a>
+                            <a th:text="${document.getGroup().getName() + ' ---> ' + document.getName()}" th:href="@{/group/{id}(id=${document.getGroup().getId()})}"></a>
                         </td>
                         <td>
                             <form th:action="@{/user/deleteDoc}" method="post">
@@ -43,6 +43,10 @@
             </div>
         </div>
     </section>
+
+    <form th:action="@{/auth/logout}" method="post">
+        <button type="submit">Вийти з акаунта</button>
+    </form>
 </main>
 
 

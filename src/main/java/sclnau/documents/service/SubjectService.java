@@ -29,6 +29,6 @@ public class SubjectService {
     }
 
     public List<Document> getAllWhereGroupId(Long id){
-        return documentRepo.findAllByGroup_IdIs(id);
+        return documentRepo.findAllByGroup_IdIsOrderByCreationDateAsc(id);
     }
 }

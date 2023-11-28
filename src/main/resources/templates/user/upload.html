@@ -16,7 +16,7 @@
         <div class="form-floating my-4">
             <select name="groupId" class="form-control">
                 <option value="">Виберіть групу</option> <!-- Default option -->
-                <option th:each="group : ${groups}" name="groupId" th:value="${group.id}" th:text="${group.name}"></option>
+                <option th:each="group : ${groups}" name="groupId" th:value="${group.getId()}" th:text="${group.getName()}"></option>
             </select>
         </div>
 
@@ -29,8 +29,6 @@
         <div class="form-floating my-4">
             <input type="file" class="form-control" id="file" name="file" accept="*" required><br><br>
         </div>
-
-        <input type="hidden" name="groupId" th:value="${group.getId()}">
 
         <button type="submit" class="form-control btn custom-btn">Завантажити</button>
 
