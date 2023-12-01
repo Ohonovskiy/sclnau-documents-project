@@ -38,7 +38,6 @@ public class UserController {
         if (userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).isPresent()) {
             User user = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).get();
             model.addAttribute("user", user);
-            model.addAttribute("groups", groupService.getAll());
         }
         return "user/profile";
     }
