@@ -1,19 +1,19 @@
 version: '3'
 services:
   myapp:
-    image: my-java-app
+    image: java-doc-app
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8080:8080"                                                   # NEEDS TO BE CHANGED
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/documents-db
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/documents-db  # NEEDS TO BE CHANGED
+      - SPRING_DATASOURCE_USERNAME=postgres                           # NEEDS TO BE CHANGED
+      - SPRING_DATASOURCE_PASSWORD=root                               # NEEDS TO BE CHANGED
       - DEFAULT_DB_SCHEMA=public
-      - MAX_FILE_SIZE=400MB
+      - MAX_FILE_SIZE=400MB                                           # MAXIMUM FILE SIZE
     volumes:
-        - myapp-data:/app/booksFiles/
+        - myapp-data:/app/documents/
 volumes:
   myapp-data:

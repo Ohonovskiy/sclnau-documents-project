@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
+    <title th:text="${group.getName()}"></title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="/css/templatemo-topic-listing.css" rel="stylesheet">
+</head>
+
+<body id="top">
+
+<main>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <i href="https://3.bp.blogspot.com/-YC6jKXG50MY/XvvBQ-YKwuI/AAAAAAAABmg/fMvP--hDdxc3P3TRaPHF4UA32OlHxj0rwCK4BGAYYCw/w0/fontawesome.PNG"></i>
+            <span class="text-white">Методичний кабінет</span>
+        </a>
+
+        <div class="d-lg-none ms-auto me-4">
+            <a th:href="@{/auth/login}" class="navbar-icon bi-person smoothscroll"></a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" th:href="@{/}">Головна</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll active" th:href="@{/#section_2}">Документи</a>
+                </li>
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link click-scroll" th:href="@{/#section_3}">Новини</a>-->
+<!--                    </li>-->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sclnau.com.ua">Сайт коледжу</a>
+                </li>
+            </ul>
+
+            <div class="d-none d-lg-block">
+                <a th:href="@{/auth/login}" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <header class="hero-section d-flex align-items-center site-header flex-column justify-content-center">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-lg-5 col-12 mb-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a th:href="@{/}">Головна</a></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Документи</li>
+                        </ol>
+                    </nav>
+
+                    <h2 class="text-white" th:text="${group.getName()}"></h2>
+                    <h4 class="text-white" th:text="${group.getDescription()}"></h4>
+                </div>
+
+                <div class="col-lg-5 col-12">
+                    <div class="topics-detail-block bg-white shadow-lg">
+                        <img th:src="${group.getImage()}" class="topics-detail-block-image img-fluid">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <section class="explore-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="mb-4">Документи</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12" th:each="document : ${group.getDocuments()}">
+                                    <div class="subscribe-form-wrap d-flex justify-content-center align-items-center">
+                                        <form class="custom-form subscribe-form" th:action="@{/user/downloadFile}" method="get" role="form">
+                                            <input type="hidden" name="path" th:value="${document.getPath()}">
+                                            <div class="col-lg-18 col-24">
+                                                <button type="submit" class="form-control" th:text="${document.getName()}"></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-12 mb-4 pb-2">
+                <a class="navbar-brand mb-2" th:href="@{/}">
+                    <span style="color:#04c02c;">Методичний <br/> кабінет</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="site-footer-title mb-3">Меню</h6>
+
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Головна</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="https://sclnau.com.ua" class="site-footer-link">Сайт коледжу</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a th:href="@{/auth/login}" class="site-footer-link">Увійти</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                <h6 class="site-footer-title mb-3">Інформація</h6>
+
+                <p class="text-white d-flex mb-1">
+                    <a class="site-footer-link">
+                        Розробка: Студент групи К-41 Огоновський Ю.М.
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                <p class="copyright-text mt-lg-5 mt-4">© 2023 СФК ЛНУП</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT FILES -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/jquery.sticky.js"></script>
+<script src="/js/custom.js"></script>
+
+</body>
+</html>

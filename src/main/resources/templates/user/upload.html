@@ -4,37 +4,155 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 
-    <title>Завантаження документ</title>
+    <title>Завантаження документа</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="/css/templatemo-topic-listing.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <h2 class="mb-4">Завантажити документ</h2>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <i href="https://3.bp.blogspot.com/-YC6jKXG50MY/XvvBQ-YKwuI/AAAAAAAABmg/fMvP--hDdxc3P3TRaPHF4UA32OlHxj0rwCK4BGAYYCw/w0/fontawesome.PNG"></i>
+            <span class="text-white">Методичний кабінет</span>
+        </a>
 
-    <form th:action="@{/user/uploadDoc}" th:method="post" enctype="multipart/form-data" role="form">
-
-        <div class="form-floating my-4">
-            <select name="groupId" class="form-control">
-                <option value="">Виберіть групу</option> <!-- Default option -->
-                <option th:each="group : ${groups}" name="groupId" th:value="${group.getId()}" th:text="${group.getName()}"></option>
-            </select>
+        <div class="d-lg-none ms-auto me-4">
+            <a th:href="@{/auth/login}" class="navbar-icon bi-person smoothscroll active"></a>
         </div>
 
-        <div class="form-floating">
-            <input type="text" name="name" id="name" class="form-control" placeholder="Назва документа" required>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <label for="name">Назва документа</label>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" th:href="@{/}">Головна</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" th:href="@{/#section_2}">Документи</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sclnau.com.ua">Сайт коледжу</a>
+                </li>
+            </ul>
+
+            <div class="d-none d-lg-block">
+                <a th:href="@{/auth/login}" class="navbar-icon bi-person smoothscroll active"></a>
+            </div>
         </div>
+    </div>
+</nav>
 
-        <div class="form-floating my-4">
-            <input type="file" class="form-control" id="file" name="file" accept="*" required><br><br>
+<section class="hero-section d-flex justify-content-center align-items-center"
+         style="padding-bottom: 50px; padding-top: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12 mx-auto">
+                <h1 class="text-white text-center">Завантаження документа</h1>
+            </div>
         </div>
+    </div>
+</section>
 
-        <button type="submit" class="form-control btn custom-btn">Завантажити</button>
+<section class="section-padding section-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <form th:action="@{/user/uploadDoc}" th:method="post" enctype="multipart/form-data" role="form">
 
-    </form>
+                    <select name="groupId" class="form-control">
+                        <option th:each="group : ${groups}" name="groupId" th:value="${group.getId()}" th:text="${group.getName()}"></option>
+                    </select>
 
+                    <br/>
+
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Назва документа" required>
+
+                    <br/>
+
+                    <input type="file" class="form-control" id="file" name="file" accept="*" required><br><br>
+
+                    <button type="submit" class="form-control btn custom-btn">Завантажити</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-12 mb-4 pb-2">
+                <a class="navbar-brand mb-2 click-scroll" th:href="@{/}">
+                    <span style="color:#04c02c;">Методичний <br/> кабінет</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="site-footer-title mb-3">Меню</h6>
+
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Головна</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="https://sclnau.com.ua" class="site-footer-link">Сайт коледжу</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a th:href="@{/auth/login}" class="site-footer-link">Увійти</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                <h6 class="site-footer-title mb-3">Інформація</h6>
+
+                <p class="text-white d-flex mb-1">
+                    <a class="site-footer-link">
+                        Розробка: Студент групи К-41 Огоновський Ю.М.
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                <p class="copyright-text mt-lg-5 mt-4">© 2023 СФК ЛНУП</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery.sticky.js"></script>
+    <script src="/js/click-scroll.js"></script>
+    <script src="/js/custom.js"></script>
 </body>
 </html>

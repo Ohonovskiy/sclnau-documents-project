@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
+    <title>Методичний кабінет</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="/css/templatemo-topic-listing.css" rel="stylesheet">
+</head>
+
+<body id="top">
+
+<main>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                <i href="https://3.bp.blogspot.com/-YC6jKXG50MY/XvvBQ-YKwuI/AAAAAAAABmg/fMvP--hDdxc3P3TRaPHF4UA32OlHxj0rwCK4BGAYYCw/w0/fontawesome.PNG"></i>
+                <span class="text-white">Методичний кабінет</span>
+            </a>
+
+            <div class="d-lg-none ms-auto me-4">
+                <a th:href="@{/auth/login}" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_1">Головна</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_2">Документи</a>
+                    </li>
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link click-scroll" href="#section_3">Новини</a>-->
+<!--                    </li>-->
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://sclnau.com.ua">Сайт коледжу</a>
+                    </li>
+                </ul>
+
+                <div class="d-none d-lg-block">
+                    <a th:href="@{/auth/login}" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8 col-12 mx-auto">
+                    <h1 class="text-white text-center">Розглядай. Зберігай. Інсайтуй</h1>
+
+                    <h6 class="text-center">Знання — ключ до майбутнього: тут народжуються ідеї, тут зберігається досвід.</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="explore-section section-padding" id="section_2">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 text-center">
+                <h2 class="mb-4">Категорії</h2>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
+                            <div class="row">
+                                <th:block th:each="group : ${groups}">
+                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a th:href="@{/group/{id}(id=${group.getId()})}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2" th:text="${group.getName()}"></h5>
+
+                                                        <p class="mb-0" th:text="${group.getDescription()}"></p>
+                                                    </div>
+
+                                                    <span class="badge bg-design rounded-pill ms-auto" th:text="${group.getDocuments().size()}"></span>
+                                                </div>
+
+                                                <img th:src="${group.getImage()}" class="custom-block-image img-fluid" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!--<section class="section-padding" id="section_3">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+
+<!--            <div class="col-lg-12 col-12 text-center">-->
+<!--                <h3 class="mb-4">Новини</h3>-->
+<!--            </div>-->
+
+<!--            <div class="col-lg-8 col-12 mt-3 mx-auto">-->
+<!--                <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">-->
+<!--                    <div class="d-flex">-->
+<!--                        <img src="/images/topics/undraw_Remote_design_team_re_urdx.png" class="custom-block-image img-fluid" alt="">-->
+
+<!--                        <div class="custom-block-topics-listing-info d-flex">-->
+<!--                            <div>-->
+<!--                                <h5 class="mb-2">Новина 1</h5>-->
+
+<!--                                <p class="mb-0">Topic Listing includes home, listing, detail and contact pages. Feel free to modify this template for your custom websites.</p>-->
+
+<!--                                <a href="/topics-detail.html" class="btn custom-btn mt-3 mt-lg-4">Дізнатися більше</a>-->
+<!--                            </div>-->
+
+<!--                            <span class="badge bg-design rounded-pill ms-auto">14</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col-lg-12 col-12">-->
+<!--                <nav aria-label="Page navigation example">-->
+<!--                    <ul class="pagination justify-content-center mb-0">-->
+<!--                        <li class="page-item">-->
+<!--                            <a class="page-link" href="#" aria-label="Previous">-->
+<!--                                <span aria-hidden="true">Prev</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+
+<!--                        <li class="page-item active" aria-current="page">-->
+<!--                            <a class="page-link" href="#">1</a>-->
+<!--                        </li>-->
+
+<!--                        <li class="page-item">-->
+<!--                            <a class="page-link" href="#">2</a>-->
+<!--                        </li>-->
+
+<!--                        <li class="page-item">-->
+<!--                            <a class="page-link" href="#">3</a>-->
+<!--                        </li>-->
+
+<!--                        <li class="page-item">-->
+<!--                            <a class="page-link" href="#" aria-label="Next">-->
+<!--                                <span aria-hidden="true">Next</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </nav>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+</main>
+
+<footer class="site-footer section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-12 mb-4 pb-2">
+                <a class="navbar-brand mb-2 click-scroll" href="#top">
+                    <span style="color:#04c02c;">Методичний <br/> кабінет</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="site-footer-title mb-3">Меню</h6>
+
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Головна</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="https://sclnau.com.ua" class="site-footer-link">Сайт коледжу</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a th:href="@{/auth/login}" class="site-footer-link">Увійти</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                <h6 class="site-footer-title mb-3">Інформація</h6>
+
+                <p class="text-white d-flex mb-1">
+                    <a class="site-footer-link">
+                        Розробка: Студент групи К-41 Огоновський Ю.М.
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                <p class="copyright-text mt-lg-5 mt-4">© 2023 СФК ЛНУП</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<!-- JAVASCRIPT FILES -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/jquery.sticky.js"></script>
+<script src="/js/click-scroll.js"></script>
+<script src="/js/custom.js"></script>
+
+</body>
+</html>
