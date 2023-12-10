@@ -5,15 +5,12 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
 @Data
-@Table
+@Table(name = "document_table")
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

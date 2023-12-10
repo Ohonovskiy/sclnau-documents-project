@@ -1,9 +1,9 @@
 package sclnau.documents.repository;
 
-import sclnau.documents.entity.Group;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import sclnau.documents.entity.Group;
 
 import java.util.List;
 

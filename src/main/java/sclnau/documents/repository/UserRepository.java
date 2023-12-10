@@ -1,8 +1,8 @@
 package sclnau.documents.repository;
 
-import sclnau.documents.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import sclnau.documents.entity.User;
 
 import java.util.Optional;
 

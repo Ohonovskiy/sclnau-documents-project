@@ -4,17 +4,14 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
-import org.hibernate.annotations.SortComparator;
 import sclnau.documents.enums.Role;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 @Entity
 @Data
-@Table
+@Table(name = "user_table")
 public class User {
     @Id
     @Setter(AccessLevel.NONE)

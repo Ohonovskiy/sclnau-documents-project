@@ -6,13 +6,13 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"                                                   # NEEDS TO BE CHANGED
+      - "8080:8080"                                                        # NEEDS TO BE CHANGED
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/documents-db  # NEEDS TO BE CHANGED
-      - SPRING_DATASOURCE_USERNAME=postgres                           # NEEDS TO BE CHANGED
-      - SPRING_DATASOURCE_PASSWORD=root                               # NEEDS TO BE CHANGED
+      - SPRING_DATASOURCE_URL=jdbc:mysql://documents-db:3306/documents-db  # NEEDS TO BE CHANGED
+      - SPRING_DATASOURCE_USERNAME=root                                    # NEEDS TO BE CHANGED
+      - SPRING_DATASOURCE_PASSWORD=root                                    # NEEDS TO BE CHANGED
       - DEFAULT_DB_SCHEMA=public
-      - MAX_FILE_SIZE=400MB                                           # MAXIMUM FILE SIZE
+      - MAX_FILE_SIZE=400MB                                                # MAXIMUM FILE SIZE
     volumes:
         - myapp-data:/app/documents/
 volumes:
